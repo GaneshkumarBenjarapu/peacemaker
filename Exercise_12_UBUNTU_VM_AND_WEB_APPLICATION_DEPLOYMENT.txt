@@ -1,0 +1,35 @@
+EXERCISE 12 - UBUNTU VM AND WEB APPLICATION DEPLOYMENT
+============================================================
+
+The uploaded lab record lists this exercise but does not provide its detailed execution commands.
+
+AWS EC2 DEPLOYMENT COMMANDS
+
+1. AWS Console -> EC2 -> Launch Instance.
+2. Select Ubuntu Server.
+3. Create/download key pair.
+4. Security Group: allow SSH 22 and HTTP 80.
+5. Launch instance.
+
+CONNECT FROM WINDOWS POWERSHELL
+ssh -i "YOUR_KEY.pem" ubuntu@YOUR_PUBLIC_IP
+
+UPDATE UBUNTU
+sudo apt update
+sudo apt upgrade -y
+
+INSTALL JAVA
+sudo apt install openjdk-17-jdk -y
+java -version
+
+INSTALL TOMCAT
+sudo apt install tomcat10 -y
+sudo systemctl start tomcat10
+sudo systemctl enable tomcat10
+sudo systemctl status tomcat10
+
+DEPLOY WAR
+sudo cp yourapp.war /var/lib/tomcat10/webapps/
+
+OPEN
+http://YOUR_PUBLIC_IP:8080/yourapp
